@@ -42,7 +42,6 @@ class SnakeEnv(gym.Env):
 
         # if snake hits self
         if self.board[x, y] == 1:
-            print('hit self')
             self.done = True
 
         if not self.done:
