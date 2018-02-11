@@ -1,4 +1,4 @@
-# OpenAI snake gym environment
+# OpenAI gym snake environment
 
 An environment for OpenAI gym emulating the classic Snake game
 
