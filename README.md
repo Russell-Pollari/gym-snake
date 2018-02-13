@@ -22,8 +22,6 @@ right = 3
 
 ## TODO
 
-- prevent snake from doing 180deg turns onto itself
-- if no action, snake should continue in current direction
-- create better render method
+- should actions be [ left, right, continue] ?
 - allow for easy human play from keyboard
 - add multiple snakes

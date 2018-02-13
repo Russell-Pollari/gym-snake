@@ -3,6 +3,7 @@ from gym import error, spaces, utils
 from gym.utils import seeding
 
 import numpy as np
+import matplotlib.pyplot as plt
 
 class SnakeEnv(gym.Env):
     metadata = { 'render.modes': ['human'] }
@@ -14,9 +15,11 @@ class SnakeEnv(gym.Env):
         self._reset()
 
     def _reset(self):
-        self.snake = [[0, 2], [0, 1], [0, 0]]
+        start_row = int(round(self.board_shape[0] / 2))
+        self.snake = [[start_row, 2], [start_row, 1], [start_row, 0]]
         self.reward = 0
         self.done = False
+        self.direction = 3
         self._place_fruit()
         self._update_snake_position()
         return self.board
@@ -40,13 +43,26 @@ class SnakeEnv(gym.Env):
         [x, y] = self.snake[0]
 
         if action == 0:
-            x += 1
+            if self.direction != 1:
+                self.direction = 0
         elif action == 1:
-            x -= 1
+            if self.direction != 0:
+                self.direction = 1
         elif action == 2:
-            y += 1
+            if self.direction != 3:
+                self.direction = 2
         elif action == 3:
-            y -= 1
+            if self.direction != 2:
+                self.direction = 3
+
+        if self.direction == 0:
+            x +=1
+        if self.direction == 1:
+            x -=1
+        if self.direction == 2:
+            y +=1
+        if self.direction == 3:
+            y -=1
 
         # if snake hits wall
         if x >= self.board_shape[0] or x < 0 or y >= self.board_shape[1] or y < 0:
@@ -70,4 +86,5 @@ class SnakeEnv(gym.Env):
         return self.board, self.reward, self.done, self.info
 
     def _render(self, mode='human', close=False):
-        print(self.board)
+        plt.ion()
+        plt.imshow(self.board)
