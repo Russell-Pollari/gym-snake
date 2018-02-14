@@ -16,12 +16,14 @@ episode is done when snake hits wall or itself
 actions:  
 down = 0  
 up = 1  
-left = 2  
-right = 3
+right = 2  
+left = 3
 
 
 ## TODO
 
 - should actions be [ left, right, continue] ?
+- better render method
+- timestep between actions?
 - allow for easy human play from keyboard
 - add multiple snakes
